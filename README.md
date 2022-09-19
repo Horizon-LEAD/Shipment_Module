@@ -20,50 +20,53 @@ Furthermore, a container image can be built by running `docker build -t shipment
 The executable's help message provides information on the parameters that are needed.
 
 ```
-$ shipment-synthesis -h
+$ shipment-synthesis -h                                       (base) 1226ms  2022-09-19 17:01:30
 usage: shipment-synthesis [-h] [-v] [--flog] [-e ENV]
-                          SKIMTIME SKIMDISTANCE NODES ZONES SEGS PARCELNODES DISTRIBUTION_CENTRES
-                          NSTR2LOGSEGMENTS MAKE_SHIPMENTS USE_SHIPMENTS SUP_COORDINATES CORRECTIONSTONNES
-                          CEP_SHARES COST_PER_VEH_TYPE COST_OUTSRC NUTS2MRDH CARRYING_CAPACITY
-                          LOG_FLOW_TYPE_SHARES TOD SHIPSIZE_VEHTYPE END_TOUR_FIRST END_TOUR_LATER
-                          CONSOLIDATION_POTENTIAL ZEZ_SCENARIO FIRMS OUTPUTFOLDER
+                          SKIMTIME SKIMDISTANCE NODES ZONES SEGS PARCELNODES DISTRIBUTIECENTRA NSTR_TO_LS MAKE_DISTRIBUTION USE_DISTRIBUTION SUP_COORDINATES_ID CORRECTIONS_TONNES
+                          CEP_SHARES COST_VEHTYPE COST_SOURCING NUTS3_TO_MRDH VEHICLE_CAPACITY LOGISTIC_FLOWTYPES PARAMS_TOD PARAMS_SSVT PARAMS_ET_FIRST PARAMS_ET_LATER
+                          ZEZ_CONSOLIDATION ZEZ_SCENARIO FIRMS_REF NSTR LOGSEG SHIP_SIZE VEH_TYPE FLOW_TYPE COMMODITY_MTX OUTDIR
 
 Shipment Synthesis
 
 positional arguments:
-  SKIMTIME              The path of the time skim matrix (mtx)
-  SKIMDISTANCE          The path of the distance skim matrix (mtx)
-  NODES                 The path of the logistics nodes shape file (shp)
-  ZONES                 The path of the study area shape file (shp)
-  SEGS                  The path of the socioeconomics data file (csv)
-  PARCELNODES           The path of the parcel depot nodes file (shp)
-  DISTRIBUTION_CENTRES  The path of the distribution centres file (csv)
-  NSTR2LOGSEGMENTS      The path of the conversion NSTR to Logistics segments file (csv)
-  MAKE_SHIPMENTS        The path of the Making Shipments per logistic sector file (csv)
-  USE_SHIPMENTS         The path of the Using Shipments per logistic sector file (csv)
-  SUP_COORDINATES       The path of the SUP coordinates file (csv)
-  CORRECTIONSTONNES     The path of the Correction of Tonnes file (csv)
-  CEP_SHARES            The path of the courier market shares file (csv)
-  COST_PER_VEH_TYPE     The path of the costs per vehicles types file (csv)
-  COST_OUTSRC           The path of the costs per vehicles types file (csv)
-  NUTS2MRDH             The path of the conversion NUTS to MRDH file (csv)
-  CARRYING_CAPACITY     The path of the carrying capacity file (csv)
-  LOG_FLOW_TYPE_SHARES  The path of the markete share of logistic flow types file (csv)
-  TOD                   The path of the Time Of Day choice model parameters file (csv)
-  SHIPSIZE_VEHTYPE      The path of the shipment size and behicle type choice model parameters file (csv)
-  END_TOUR_FIRST        The path of the End pf Tour model parameters file for the first visited location (csv)
-  END_TOUR_LATER        The path of the End pf Tour model parameters file for the later visited location (csv)
-  CONSOLIDATION_POTENTIAL
-                        The path of the Consolidation Potentials for different logistics sectors file (csv)
-  ZEZ_SCENARIO          The path of the specifications for zero emission zones in the study area file (csv)
-  FIRMS                 The path of the specifications of synthesized firms file (csv)
-  OUTPUTFOLDER          The output directory
+  SKIMTIME            The path of the time skim matrix (mtx)
+  SKIMDISTANCE        The path of the distance skim matrix (mtx)
+  NODES               The path of the logistics nodes shape file (shp)
+  ZONES               The path of the study area shape file (shp)
+  SEGS                The path of the socioeconomics data file (csv)
+  PARCELNODES         The path of the parcel depot nodes file (shp)
+  DISTRIBUTIECENTRA   The path of the distribution centres file (csv)
+  NSTR_TO_LS          The path of the conversion NSTR to Logistics segments file (csv)
+  MAKE_DISTRIBUTION   The path of the Making Shipments per logistic sector file (csv)
+  USE_DISTRIBUTION    The path of the Using Shipments per logistic sector file (csv)
+  SUP_COORDINATES_ID  The path of the SUP coordinates file (csv)
+  CORRECTIONS_TONNES  The path of the Correction of Tonnes file (csv)
+  CEP_SHARES          The path of the courier market shares file (csv)
+  COST_VEHTYPE        The path of the costs per vehicles types file (csv)
+  COST_SOURCING       The path of the costs per vehicles types file (csv)
+  NUTS3_TO_MRDH       The path of the conversion NUTS to MRDH file (csv)
+  VEHICLE_CAPACITY    The path of the carrying capacity file (csv)
+  LOGISTIC_FLOWTYPES  The path of the markete share of logistic flow types file (csv)
+  PARAMS_TOD          The path of the Time Of Day choice model parameters file (csv)
+  PARAMS_SSVT         The path of the shipment size and vehicle type choice model parameters file (csv)
+  PARAMS_ET_FIRST     The path of the End pf Tour model parameters file for the first visited location (csv)
+  PARAMS_ET_LATER     The path of the End pf Tour model parameters file for the later visited location (csv)
+  ZEZ_CONSOLIDATION   The path of the Consolidation Potentials for different logistics sectors file (csv)
+  ZEZ_SCENARIO        The path of the specifications for zero emission zones in the study area file (csv)
+  FIRMS_REF           The path of the specifications of synthesized firms file (csv)
+  NSTR                (txt)
+  LOGSEG              (txt)
+  SHIP_SIZE           (txt)
+  VEH_TYPE            (txt)
+  FLOW_TYPE           (txt)
+  COMMODITY_MTX       (csv)
+  OUTDIR              The output directory
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -v, --verbosity       Increase output verbosity (default: 0)
-  --flog                Stores logs to file (default: False)
-  -e ENV, --env ENV     Defines the path of the environment file (default: None)
+  -h, --help          show this help message and exit
+  -v, --verbosity     Increase output verbosity (default: 0)
+  --flog              Stores logs to file (default: False)
+  -e ENV, --env ENV   Defines the path of the environment file (default: None)
 ```
 
 Furthermore, the following parameters must be provided as environment variables either from the environment itself or through a dotenv file that is specified with the `--env <path-to-dotenv>` command line argument. An example of the `.env` file and some values is presented below.
@@ -79,9 +82,9 @@ FAC_LS4=""
 FAC_LS5=""
 FAC_LS6=""
 FAC_LS7=""
-NEAREST_DC=""
 
 # boolean parameters
+NEAREST_DC=""
 
 # numeric parameters
 YEARFACTOR=209
@@ -94,6 +97,7 @@ PARCELS_GROWTHFREIGHT=1.0
 # json
 ```
 
+## Examples
 ```
 python3 __module_SHIP__.py REF Input Output \
     skimTijd_new_REF.mtx \
@@ -121,4 +125,40 @@ python3 __module_SHIP__.py REF Input Output \
     ConsolidationPotential.csv \
     ZEZscenario.csv \
     Firms.csv
+```
+
+```
+shipment-synthesis -vvv --env .env \
+    sample-data/input/skimTijd_new_REF.mtx \
+    sample-data/input/skimAfstand_new_REF.mtx \
+    sample-data/input/nodes_v5.shp \
+    sample-data/input/Zones_v6.shp \
+    sample-data/input/SEGS2020.csv \
+    sample-data/input/parcelNodes_v2.shp \
+    sample-data/input/distributieCentra.csv \
+    sample-data/input/nstrToLogisticSegment.csv \
+    sample-data/input/MakeDistribution.csv \
+    sample-data/input/UseDistribution.csv \
+    sample-data/input/SupCoordinatesID.csv \
+    sample-data/input/CorrectionsTonnes2016.csv \
+    sample-data/input/CEPshares.csv \
+    sample-data/input/Cost_VehType_2016.csv \
+    sample-data/input/Cost_Sourcing_2016.csv \
+    sample-data/input/NUTS32013toMRDH.csv \
+    sample-data/input/CarryingCapacity.csv \
+    sample-data/input/LogFlowtype_Shares.csv \
+    sample-data/input/Params_TOD.csv \
+    sample-data/input/Params_ShipSize_VehType.csv \
+    sample-data/input/Params_EndTourFirst.csv \
+    sample-data/input/Params_EndTourLater.csv \
+    sample-data/input/ConsolidationPotential.csv \
+    sample-data/input/ZEZscenario.csv \
+    sample-data/input/Firms.csv \
+    sample-data/input/nstr.txt \
+    sample-data/input/logistic_segment.txt \
+    sample-data/input/shipment_size.txt \
+    sample-data/input/vehicle_type.txt \
+    sample-data/input/flow_type.txt \
+    sample-data/input/CommodityMatrixNUTS3.csv \
+    sample-data/output
 ```
