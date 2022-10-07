@@ -2,8 +2,8 @@
 		"application": {
 			"$schema": "",
 			"$id": "path://to/git.repo",
-			"title": "Shipment_Synthesis",
-			"version": "Shipment_Synthesis v1",
+			"title": "Shipment-Module",
+			"version": "Shipment-Module v1",
 			"description": "Generates shipments for commodity matrices",
 			"application-information": {
 				"application-type": "script",
@@ -300,12 +300,12 @@
 				"filetype": ".csv"
 			},
 			{
-				"id": "2",
+				"id": "4",
 				"desc": "Shipments_REF",
 				"filetype": ".shp"
 			},
 			{
-				"id": "2",
+				"id": "5",
 				"desc": "Logfile_ShipmentSynthesizer",
 				"filetype": ".log"
 			}
