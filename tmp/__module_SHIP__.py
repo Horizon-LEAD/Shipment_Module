@@ -41,20 +41,20 @@ datapath = cwd.replace('Code', '')
 
 def generate_args(method):
     varDict = {}
-   
+
     '''FOR ALL MODULES'''
     cwd = os.getcwd().replace(os.sep, '/')
     datapath = cwd.replace('Code', '')
-    
-    if method == 'from_file':   
-            
+
+    if method == 'from_file':
+
         if sys.argv[0] == '' :
             #params_file = open(f'{datapath}/Input/Params_ParcelGen.txt')
-            varDict['LABEL']			= 'ConsoleRun'			
-            varDict['DATAPATH']			= f'{datapath}'							
-         
-            varDict['INPUTFOLDER']	 = f'{datapath}'+'/' +'Input' +'/' 
-            varDict['OUTPUTFOLDER']  = f'{datapath}'+'/' +'Output' +'/' 
+            varDict['LABEL']			= 'ConsoleRun'
+            varDict['DATAPATH']			= f'{datapath}'
+
+            varDict['INPUTFOLDER']	 = f'{datapath}'+'/' +'Input' +'/'
+            varDict['OUTPUTFOLDER']  = f'{datapath}'+'/' +'Output' +'/'
 
             varDict['SKIMTIME']     = varDict['INPUTFOLDER'] +'skimTijd_new_REF'
             varDict['SKIMDISTANCE'] = varDict['INPUTFOLDER'] + 'skimAfstand_new_REF.mtx'
@@ -87,12 +87,12 @@ def generate_args(method):
             varDict['ZEZ_SCENARIO']      = varDict['INPUTFOLDER'] + 'ZEZscenario.csv'
 
             varDict['YEARFACTOR'] = 209
-                
+
             varDict['PARCELS_GROWTHFREIGHT'] = 1.0
 
             varDict['SHIPMENTS_REF'] = ""
             varDict['FIRMS_REF'] = varDict['INPUTFOLDER'] + 'Firms.csv'
-            
+
             varDict['FAC_LS0'] = ""
             varDict['FAC_LS1'] = ""
             varDict['FAC_LS2'] = ""
@@ -104,15 +104,15 @@ def generate_args(method):
             varDict['NEAREST_DC'] = ""
 
             varDict['LABEL'] = 'REF'
-        
-            
+
+
         else:  # This is the part for line cod execution
 
-            varDict['LABEL']			= sys.argv[1]				
-            varDict['DATAPATH']			= datapath							
-            varDict['INPUTFOLDER']		= f'{datapath}'+'/' + sys.argv[2] +'/' 				
-            varDict['OUTPUTFOLDER']		= f'{datapath}'+'/' + sys.argv[3] +'/'			
-            
+            varDict['LABEL']			= sys.argv[1]
+            varDict['DATAPATH']			= datapath
+            varDict['INPUTFOLDER']		= f'{datapath}'+'/' + sys.argv[2] +'/'
+            varDict['OUTPUTFOLDER']		= f'{datapath}'+'/' + sys.argv[3] +'/'
+
             varDict['SKIMTIME']     = varDict['INPUTFOLDER'] + sys.argv[4] #'skimTijd_REF.mtx'
             varDict['SKIMDISTANCE'] = varDict['INPUTFOLDER'] + sys.argv[5] #'skimAfstand_REF.mtx'
             varDict['NODES'] = varDict['INPUTFOLDER'] + sys.argv[6] #'nodes_v5.shp'
@@ -144,12 +144,12 @@ def generate_args(method):
             varDict['ZEZ_SCENARIO']      = varDict['INPUTFOLDER'] + sys.argv[27] #'ZEZscenario.csv'
 
             varDict['YEARFACTOR'] = 209
-                
+
             varDict['PARCELS_GROWTHFREIGHT'] = 1.0
 
             varDict['SHIPMENTS_REF'] = ""
             varDict['FIRMS_REF'] = varDict['INPUTFOLDER'] + sys.argv[28] # 'Firms.csv'
-            
+
             varDict['FAC_LS0'] = ""
             varDict['FAC_LS1'] = ""
             varDict['FAC_LS2'] = ""
@@ -160,13 +160,13 @@ def generate_args(method):
             varDict['FAC_LS7'] = ""
             varDict['NEAREST_DC'] = ""
 
- 
+
     elif method == 'from_code':
 
         print('Generating args from code')
-            
-        varDict['INPUTFOLDER']	 = f'{datapath}'+'/' +'Input' +'/' 
-        varDict['OUTPUTFOLDER']  = f'{datapath}'+'/' +'Output' +'/' 
+
+        varDict['INPUTFOLDER']	 = f'{datapath}'+'/' +'Input' +'/'
+        varDict['OUTPUTFOLDER']  = f'{datapath}'+'/' +'Output' +'/'
 
         varDict['SKIMTIME']     = varDict['INPUTFOLDER'] +'skimTijd_new_REF.mtx'
         varDict['SKIMDISTANCE'] = varDict['INPUTFOLDER'] + 'skimAfstand_new_REF.mtx'
@@ -199,12 +199,12 @@ def generate_args(method):
         varDict['ZEZ_SCENARIO']      = varDict['INPUTFOLDER'] + 'ZEZscenario.csv'
 
         varDict['YEARFACTOR'] = 209
-              
+
         varDict['PARCELS_GROWTHFREIGHT'] = 1.0
 
         varDict['SHIPMENTS_REF'] = ""
         varDict['FIRMS_REF'] = varDict['INPUTFOLDER'] + 'Firms.csv'
-        
+
         varDict['FAC_LS0'] = ""
         varDict['FAC_LS1'] = ""
         varDict['FAC_LS2'] = ""
@@ -216,8 +216,8 @@ def generate_args(method):
         varDict['NEAREST_DC'] = ""
 
         varDict['LABEL'] = 'REF'
-    
-							   
+
+
     args = ['', varDict]
     return args, varDict
 
@@ -274,13 +274,13 @@ class Root:
             height=22)
 
         # Remove the default tkinter icon from the window
-        icon = zlib.decompress(base64.b64decode(
-            'eJxjYGAEQgEBBiDJwZDBy' +
-            'sAgxsDAoAHEQCEGBQaIOAg4sDIgACMUj4JRMApGwQgF/ykEAFXxQRc='))
-        _, self.iconPath = tempfile.mkstemp()
-        with open(self.iconPath, 'wb') as iconFile:
-            iconFile.write(icon)
-        self.root.iconbitmap(bitmap=self.iconPath)
+        # icon = zlib.decompress(base64.b64decode(
+        #     'eJxjYGAEQgEBBiDJwZDBy' +
+        #     'sAgxsDAoAHEQCEGBQaIOAg4sDIgACMUj4JRMApGwQgF/ykEAFXxQRc='))
+        # _, self.iconPath = tempfile.mkstemp()
+        # with open(self.iconPath, 'wb') as iconFile:
+        #     iconFile.write(icon)
+        # self.root.iconbitmap(bitmap=self.iconPath)
 
         # Create a progress bar
         self.progressBar = Progressbar(self.root, length=self.width - 20)
@@ -310,7 +310,7 @@ class Root:
         windowError.title(title)
         windowError.geometry(f'{size[0]}x{size[1]}+0+{200+50+self.height}')
         windowError.minsize(width=size[0], height=size[1])
-        windowError.iconbitmap(default=self.iconPath)
+        # windowError.iconbitmap(default=self.iconPath)
         labelError = tk.Label(
             windowError,
             text=text,
@@ -393,7 +393,7 @@ def actually_run_module(args):
 
         nFlowTypesInternal = np.sum(dimFT['IsExternal'] == 0)
         nFlowTypesExternal = np.sum(dimFT['IsExternal'] == 1)
-        
+
         absoluteShipmentSizes = np.array(dimShipSize['Median'])
 
         # Distance decay parameters
@@ -712,7 +712,7 @@ def actually_run_module(args):
                 [try_float(x, varDict['PARAMS_TOD'])
                  for x in paramsTimeOfDay.loc[:, str(ls + 1)]]))
             for ls in range(nLS)]
-            
+
         nTimeIntervals = len([
             x for x in paramsTimeOfDay[0].keys()
             if x.split('_')[0] == 'Interval'])
@@ -1697,7 +1697,7 @@ def actually_run_module(args):
                                         tmpCostTime = (
                                             costPerHourSourcing *
                                             skimTravTime[destZone[count]::nZones] /
-                                            3600) 
+                                            3600)
                                         tmpCostDist = (
                                             costPerKmSourcing *
                                             skimDistance[destZone[count]::nZones] /
@@ -1749,7 +1749,7 @@ def actually_run_module(args):
                                                 transportCosts = (
                                                     costPerHour[vt] * travTime +
                                                     costPerKm[vt] * distance)
-                                                
+
                                                 # Multiply transport costs by number of required vehicles
                                                 transportCosts *= np.ceil(
                                                     absoluteShipmentSizes[ss] /
@@ -1770,7 +1770,7 @@ def actually_run_module(args):
                                             np.exp(utilities) /
                                             np.sum(np.exp(utilities)))
                                         cumProbabilities = np.cumsum(probabilities)
-                                                    
+
                                         # Sample one choice based on the
                                         # cumulative probability distribution
                                         ssvt = draw_choice(cumProbabilities)
@@ -1807,14 +1807,14 @@ def actually_run_module(args):
                 root.update_statusbar(
                     "Shipment Synthesizer: " +
                     "Delivery time choice")
-                
+
             # Determine delivery time period for each shipment
             deliveryTimePeriod = {}
             lowerTOD = {}
             upperTOD = {}
-            
+
             for i in range(nShips):
-                    
+
                 orig = zoneDict[origZone[i]]
                 dest = zoneDict[destZone[i]]
                 ls = logisticSegment[i]
@@ -1828,9 +1828,9 @@ def actually_run_module(args):
                 beta_MediumTruck    = {}
                 beta_TruckTrailer   = {}
                 beta_TractorTrailer = {}
-                
+
                 beta_durTimePeriod = paramsTimeOfDay[ls]['DurTimePeriod']
-                
+
                 for t in range(nTimeIntervalsLS[ls]):
                     ASC[t] = paramsTimeOfDay[ls][f'ASC_{t+1}']
                     beta_ToTT[t] = paramsTimeOfDay[ls][f'ToTT_{t+1}']
@@ -1841,7 +1841,7 @@ def actually_run_module(args):
                     beta_MediumTruck[t] = paramsTimeOfDay[ls][f'VT_MediumTruck_{t+1}']
                     beta_TruckTrailer[t] = paramsTimeOfDay[ls][f'VT_TruckTrailer_{t+1}']
                     beta_TractorTrailer[t] = paramsTimeOfDay[ls][f'VT_TractorTrailer_{t+1}']
-                
+
                 utilities = {}
                 for t in range(nTimeIntervalsLS[ls]):
                     utilities[t] = (
@@ -1882,13 +1882,13 @@ def actually_run_module(args):
             lowerTOD        = list(lowerTOD.values())
             upperTOD        = list(upperTOD.values())
             periodTOD       = list(deliveryTimePeriod.values())
-            
+
             shipCols  = [
                 "SHIP_ID",
                 "ORIG", "DEST",
                 "NSTR",
-                "WEIGHT", "WEIGHT_CAT", 
-                "FLOWTYPE", "LS", 
+                "WEIGHT", "WEIGHT_CAT",
+                "FLOWTYPE", "LS",
                 "VEHTYPE",
                 "SEND_FIRM", "RECEIVE_FIRM",
                 "SEND_DC", "RECEIVE_DC",
@@ -1897,7 +1897,7 @@ def actually_run_module(args):
             shipments = pd.DataFrame(
                 np.zeros((nShips, len(shipCols))),
                 columns=shipCols)
-    
+
             shipments['SHIP_ID'     ] = np.arange(nShips)
             shipments['ORIG'        ] = [zoneDict[x] for x in origZone]
             shipments['DEST'        ] = [zoneDict[x] for x in destZone]
@@ -1951,7 +1951,7 @@ def actually_run_module(args):
                 (shipments['FLOWTYPE'] == 3) |
                 (shipments['FLOWTYPE'] == 5) |
                 (shipments['FLOWTYPE'] == 7) |
-                ((shipments['FLOWTYPE'] == 11) & (shipments['DEST'] > 99999900)))                    
+                ((shipments['FLOWTYPE'] == 11) & (shipments['DEST'] > 99999900)))
             shipments.loc[whereToDC,  'RECEIVE_DC'] = np.array(toFirm)[whereToDC]
             shipments.loc[whereFromDC,'SEND_DC'   ] = np.array(fromFirm)[whereFromDC]
 
@@ -1966,7 +1966,7 @@ def actually_run_module(args):
             "NSTR",
             "WEIGHT_CAT",
             "FLOWTYPE",
-            "LS", 
+            "LS",
             "VEHTYPE",
             "SEND_FIRM", "RECEIVE_FIRM",
             "SEND_DC", "RECEIVE_DC",
@@ -1985,7 +1985,7 @@ def actually_run_module(args):
                     "Shipments_REF.csv")
                 print(message)
                 log_file.write(message + "\n")
-                
+
                 if root != '':
                     root.progressBar['value'] = 93
                     root.update_statusbar(
@@ -2072,7 +2072,7 @@ def actually_run_module(args):
                         shipments.at[i,'TO_UCC'] = 1
                         if varDict['SHIPMENTS_REF'] == "":
                             destX[i] = zoneX[invZoneDict[newDest]]
-                            destY[i] = zoneY[invZoneDict[newDest]]   
+                            destY[i] = zoneY[invZoneDict[newDest]]
 
                         # Add shipment to ZEZ from UCC
                         newShipments.loc[count, :] = list(shipments.loc[i, :].copy())
@@ -2179,7 +2179,7 @@ def actually_run_module(args):
             root.update_statusbar(
                 "Shipment Synthesizer: " +
                 "Exporting shipments to CSV")
-            
+
         dtypes = {
             'SHIP_ID': int,
             'ORIG': int,
@@ -2197,10 +2197,10 @@ def actually_run_module(args):
 
         for col in dtypes.keys():
             shipments[col] = shipments[col].astype(dtypes[col])
-            
+
         shipments.to_csv(
             varDict['OUTPUTFOLDER'] + f"Shipments_{varDict['LABEL']}.csv",
-            index=False)  
+            index=False)
 
         if varDict['SHIPMENTS_REF'] == "":
 
@@ -2213,7 +2213,7 @@ def actually_run_module(args):
                 root.update_statusbar(
                     "Shipment Synthesizer: " +
                     "Writing zonal productions/attractions")
-                
+
             prodWeight = pd.pivot_table(
                 shipments,
                 values=['WEIGHT'],
@@ -2238,7 +2238,7 @@ def actually_run_module(args):
                 ls   = x[1]
                 zonalAttractions[orig, ls] += attrWeight['WEIGHT'][x]
 
-            cols = ['LS0', 'LS1', 'LS2', 'LS3', 
+            cols = ['LS0', 'LS1', 'LS2', 'LS3',
                     'LS4', 'LS5', 'LS6', 'LS7']
             zonalProductions = pd.DataFrame(zonalProductions, columns=cols)
             zonalAttractions = pd.DataFrame(zonalAttractions, columns=cols)
@@ -2263,7 +2263,7 @@ def actually_run_module(args):
                 index=False)
 
             # --------------------- Creating shipments SHP --------------------
-            
+
             print("Writing Shapefile...")
             log_file.write("Writing Shapefile...\n")
 
@@ -2302,7 +2302,7 @@ def actually_run_module(args):
             if varDict['LABEL'] == 'UCC':
                 w.field('FROM_UCC', 'N', size=2, decimal=0)
                 w.field('TO_UCC',   'N', size=2, decimal=0)
-                  
+
             dbfData = np.array(shipments, dtype=object)
             for i in range(nShips):
 
@@ -2310,10 +2310,10 @@ def actually_run_module(args):
                 w.line([[
                     [Ax[i], Ay[i]],
                     [Bx[i], By[i]]]])
-                
+
                 # Add data fields
                 w.record(*dbfData[i, :])
-                                
+
                 if i % int(round(nShips / 20)) == 0:
                     print(
                         '\t' + str(round(i / nShips * 100, 1)) + '%',
@@ -2327,7 +2327,7 @@ def actually_run_module(args):
             w.close()
 
         # ------------------------- End of module -----------------------------
-            
+
         totaltime = round(time.time() - start_time, 2)
         print('Finished. Run time: ' + str(totaltime) + ' seconds')
         log_file.write("Total runtime: %s seconds\n" % (totaltime))
@@ -2348,22 +2348,22 @@ def actually_run_module(args):
 
         else:
             return [0, [0, 0]]
-        
+
     except BaseException:
         import sys
         log_file.write(str(sys.exc_info()[0]) + "\n")
-        import traceback        
+        import traceback
         log_file.write(str(traceback.format_exc()) + "\n")
         log_file.write("Execution failed!")
-        log_file.close()        
+        log_file.close()
         print(sys.exc_info()[0])
         print(traceback.format_exc())
         print("Execution failed!")
-        
+
         if root != '':
             # Use this information to display as error message in GUI
             root.returnInfo = [1, [sys.exc_info()[0], traceback.format_exc()]]
-        
+
             if __name__ == '__main__':
                 root.update_statusbar("Shipment Synthesizer: Execution failed!")
                 errorMessage = (
@@ -2373,7 +2373,7 @@ def actually_run_module(args):
                     '\n\n' +
                     str(root.returnInfo[1][1]))
                 root.error_screen(text=errorMessage, size=[900, 350])
-            
+
             else:
                 return root.returnInfo
 
@@ -2382,7 +2382,7 @@ def actually_run_module(args):
 
 
 #%% For if you want to run the module from this script itself (instead of calling it from the GUI module)
-        
+
 if __name__ == '__main__':
     print('Starting Shipment Generation')
     # Run the module
