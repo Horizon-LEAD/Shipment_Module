@@ -1,6 +1,6 @@
 # Shipment_Synthesis
 
-## Introduction 
+## Introduction
 
 This module Synthesize the shipments between origins and destinations of the commodities.
 
@@ -13,14 +13,18 @@ The `requirements.txt` and `Pipenv` files are provided for the setup of an envir
 
 After the install is completed, an executable `shipment-synthesis` will be available to the user.
 
-Furthermore, a container image can be built by running `docker build -t shipment-synthesis:latest .` from the project's root directory.
+Furthermore, a `Dockerfile` is provided so that the user can package the model. To build the image the following command must be issued from the project's root directory:
+
+```
+docker build -t shipment-synthesis:latest .
+```
 
 ## Usage
 
 The executable's help message provides information on the parameters that are needed.
 
 ```
-$ shipment-synthesis -h                                       (base) 1226ms  2022-09-19 17:01:30
+$ shipment-synthesis -h
 usage: shipment-synthesis [-h] [-v] [--flog] [-e ENV]
                           SKIMTIME SKIMDISTANCE NODES ZONES SEGS PARCELNODES DISTRIBUTIECENTRA NSTR_TO_LS MAKE_DISTRIBUTION USE_DISTRIBUTION SUP_COORDINATES_ID CORRECTIONS_TONNES
                           CEP_SHARES COST_VEHTYPE COST_SOURCING NUTS3_TO_MRDH VEHICLE_CAPACITY LOGISTIC_FLOWTYPES PARAMS_TOD PARAMS_SSVT PARAMS_ET_FIRST PARAMS_ET_LATER
@@ -98,34 +102,10 @@ PARCELS_GROWTHFREIGHT=1.0
 ```
 
 ## Examples
-```
-python3 __module_SHIP__.py REF Input Output \
-    skimTijd_new_REF.mtx \
-    skimAfstand_new_REF.mtx \
-    nodes_v5.shp \
-    Zones_v6.shp \
-    SEGS2020.csv \
-    parcelNodes_v2.shp \
-    distributieCentra.csv \
-    nstrToLogisticSegment.csv \
-    MakeDistribution.csv \
-    UseDistribution.csv \
-    SupCoordinatesID.csv \
-    CorrectionsTonnes2016.csv \
-    CEPshares.csv \
-    Cost_VehType_2016.csv \
-    Cost_Sourcing_2016.csv \
-    NUTS32013toMRDH.csv \
-    CarryingCapacity.csv \
-    LogFlowtype_Shares.csv \
-    Params_TOD.csv \
-    Params_ShipSize_VehType.csv \
-    Params_EndTourFirst.csv \
-    Params_EndTourLater.csv \
-    ConsolidationPotential.csv \
-    ZEZscenario.csv \
-    Firms.csv
-```
+
+In the following examples, it is assumed that the user's terminal is at the project's root directory. Also that all the necessary input files are located in the `sample-data/inputs` directory and that the `sample-data/outputs` directory exists.
+
+The user can then execute the model by running the executable.
 
 ```
 shipment-synthesis -vvv --env .env \
@@ -162,3 +142,79 @@ shipment-synthesis -vvv --env .env \
     sample-data/input/CommodityMatrixNUTS3.csv \
     sample-data/output
 ```
+
+If the package installation has been omitted, the model can of course also be run with `python -m src.shipmentsynth.__main__ <args>`.
+
+Finally, the model can be executed with `docker run`:
+
+```
+docker run --rm \
+  -v $PWD/sample-data/input:/data/input \
+  -v $PWD/sample-data/output:/data/output \
+  --env-file .env \
+  shipment-synthesis:latest \
+  /data/input/skimTijd_new_REF.mtx \
+  /data/input/skimAfstand_new_REF.mtx \
+  /data/input/nodes_v5.shp \
+  /data/input/Zones_v6.shp \
+  /data/input/SEGS2020.csv \
+  /data/input/parcelNodes_v2.shp \
+  /data/input/distributieCentra.csv \
+  /data/input/nstrToLogisticSegment.csv \
+  /data/input/MakeDistribution.csv \
+  /data/input/UseDistribution.csv \
+  /data/input/SupCoordinatesID.csv \
+  /data/input/CorrectionsTonnes2016.csv \
+  /data/input/CEPshares.csv \
+  /data/input/Cost_VehType_2016.csv \
+  /data/input/Cost_Sourcing_2016.csv \
+  /data/input/NUTS32013toMRDH.csv \
+  /data/input/CarryingCapacity.csv \
+  /data/input/LogFlowtype_Shares.csv \
+  /data/input/Params_TOD.csv \
+  /data/input/Params_ShipSize_VehType.csv \
+  /data/input/Params_EndTourFirst.csv \
+  /data/input/Params_EndTourLater.csv \
+  /data/input/ConsolidationPotential.csv \
+  /data/input/ZEZscenario.csv \
+  /data/input/Firms.csv \
+  /data/input/nstr.txt \
+  /data/input/logistic_segment.txt \
+  /data/input/shipment_size.txt \
+  /data/input/vehicle_type.txt \
+  /data/input/flow_type.txt \
+  /data/input/CommodityMatrixNUTS3.csv \
+  /data/output
+```
+
+Temporary example:
+
+```
+python3 __module_SHIP__.py REF Input Output \
+    skimTijd_new_REF.mtx \
+    skimAfstand_new_REF.mtx \
+    nodes_v5.shp \
+    Zones_v6.shp \
+    SEGS2020.csv \
+    parcelNodes_v2.shp \
+    distributieCentra.csv \
+    nstrToLogisticSegment.csv \
+    MakeDistribution.csv \
+    UseDistribution.csv \
+    SupCoordinatesID.csv \
+    CorrectionsTonnes2016.csv \
+    CEPshares.csv \
+    Cost_VehType_2016.csv \
+    Cost_Sourcing_2016.csv \
+    NUTS32013toMRDH.csv \
+    CarryingCapacity.csv \
+    LogFlowtype_Shares.csv \
+    Params_TOD.csv \
+    Params_ShipSize_VehType.csv \
+    Params_EndTourFirst.csv \
+    Params_EndTourLater.csv \
+    ConsolidationPotential.csv \
+    ZEZscenario.csv \
+    Firms.csv
+```
+
