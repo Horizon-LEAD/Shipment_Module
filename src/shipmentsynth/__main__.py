@@ -125,7 +125,7 @@ def main():
                              'area file (csv)')
     parser.add_argument('FIRMS_REF', type=strfile,
                         help='The path of the specifications of synthesized firms file (csv)')
-    
+
     parser.add_argument('NSTR', type=strfile,
                         help='(txt)')
     parser.add_argument('LOGSEG', type=strfile,
@@ -138,7 +138,7 @@ def main():
                         help='(txt)')
     parser.add_argument('COMMODITY_MTX', type=strfile,
                         help='(csv)')
-    
+
     parser.add_argument('OUTDIR', type=strdir, help='The output directory')
 
     parser.add_argument('-v', '--verbosity', action='count', default=0,
@@ -175,9 +175,12 @@ def main():
     config = vars(args).copy()
     _ = [config.pop(key) for key in ("verbosity", "flog", "env")]
     config_env = {}
-    if isfile(abspath(args.env)):
-        logger.info("using env file: %s", abspath(args.env))
-        config_env = parse_env_values(dotenv_values(abspath(args.env)))
+    if args.env:
+        if isfile(abspath(args.env)):
+            logger.info("using env file: %s", abspath(args.env))
+            config_env = parse_env_values(dotenv_values(abspath(args.env)))
+        else:
+            raise ValueError('error: invalid .env file')
     else:
         logger.info("using environment")
         config_env = parse_env_values(environ)
